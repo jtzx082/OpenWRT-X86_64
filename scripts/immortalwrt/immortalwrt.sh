@@ -28,9 +28,9 @@ popd
 # popd
 
 # fix sysupgrade
-rm -rf package/base-files/files/sbin/sysupgrade
-cp -f $GITHUB_WORKSPACE/data/sysupgrade package/base-files/files/sbin/sysupgrade
-chmod 755 package/base-files/files/sbin/sysupgrade
+# rm -rf package/base-files/files/sbin/sysupgrade
+# cp -f $GITHUB_WORKSPACE/data/sysupgrade package/base-files/files/sbin/sysupgrade
+# chmod 755 package/base-files/files/sbin/sysupgrade
 
 # Change default shell to zsh
 sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
@@ -40,8 +40,12 @@ sed -i 's/192.168.1.1/192.168.11.1/g' package/base-files/files/bin/config_genera
 
 # 修改开源站地址
 # sed -i '/@OPENWRT/a\\t\t"https://source.cooluc.com",' scripts/projectsmirrors.json
+sed -i 's/mirror.iscas.ac.cn/mirrors.ustc.edu.cn/g' scripts/projectsmirrors.json
 
 sed -i 's/services/network/g' customfeeds/luci/applications/luci-app-upnp/root/usr/share/luci/menu.d/luci-app-upnp.json
+
+sed -i 's/services/network/g' customfeeds/luci/applications/luci-app-frpc/root/usr/share/luci/menu.d/luci-app-frpc.json
+
 
 # Test kernel 6.6
 rm -rf target/linux/x86/base-files/etc/board.d/02_network
