@@ -14,7 +14,7 @@ pushd package/community
 # Add openwrt-packages
 git clone --depth=1 https://github.com/xuanranran/openwrt-package openwrt-package
 git clone --depth=1 https://github.com/xuanranran/rely openwrt-rely
-git clone --depth=1 https://github.com/immortalwrt/wwan-packages wwan-packages
+git clone --depth=1 https://github.com/sbwml/wwan-packages wwan-packages
 chmod 755 openwrt-package/luci-app-onliner/root/usr/share/onliner/setnlbw.sh
 popd
 
@@ -49,6 +49,7 @@ sed -i 's/services/network/g' customfeeds/luci/applications/luci-app-frpc/root/u
 
 
 # Test kernel 6.6
+sed -i 's/6.6/6.12/g' target/linux/x86/Makefile
 rm -rf target/linux/x86/base-files/etc/board.d/02_network
 rm -rf package/base-files/files/etc/banner
 cp -f $GITHUB_WORKSPACE/data/banner package/base-files/files/etc/banner
